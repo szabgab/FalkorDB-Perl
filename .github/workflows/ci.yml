@@ -20,26 +20,18 @@ jobs:
           --health-retries 5
     env:
       FALKORDB: falkordb:6379
+    container:
+      image: perldocker/perl-tester:5.42     # https://hub.docker.com/r/perldocker/perl-tester
     steps:
       - name: Checkout
         uses: actions/checkout@v6
-
-      - name: Setup Perl
-        uses: actions/setup-perl@v1
-        with:
-          perl-version: '5.42'
-
-      - name: Install cpanminus
-        run: |
-          curl -L https://cpanmin.us | perl - --sudo App::cpanminus
 
       - name: Install Perl dependencies
         run: |
           cpanm --notest --installdeps .
 
-      - name: Run tests
+      - name: Wait for the FalkorDB service to become available
         run: |
-          # Wait briefly for the FalkorDB service to become available
           for i in $(seq 1 30); do
             if bash -c "echo > /dev/tcp/falkordb/6379" 2>/dev/null; then
               break
@@ -47,5 +39,8 @@ jobs:
             sleep 1
           done
 
-          # Run the project's test suite using the expected environment variable
+      - name: Run tests
+        run: |
+          perl Makefile.PL
+          make
           FALKORDB=falkordb:6379 prove -Ilib -lv t/
