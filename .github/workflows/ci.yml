@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     services:
       falkordb:
-        image: falkordb:latest
+        image: falkordb/falkordb:latest
         ports:
           - 6379:6379
         options: >-
