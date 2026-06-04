@@ -4,7 +4,10 @@
 * When asked to change the tests, don't change the code in the `lib` folder. Only the tests.
 * When asked to refactor the code, don't change the tests.
 
+* Never commit changes to `git`!
+
 * After every change run the following command:
+
 
 ```
 tidyall -a --refresh-cache
