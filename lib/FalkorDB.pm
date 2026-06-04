@@ -85,6 +85,11 @@ __END__
 
 FalkorDB - Perl client module for FalkorDB
 
+=head1 WARNING
+
+This code was mostly generated using AI tools and has not been checked manually yet.
+Check the source code before starting to use it!
+
 =head1 SYNOPSIS
 
     use FalkorDB;
@@ -157,7 +162,7 @@ Returns an array reference of the names of all graphs.
 
 =head1 LICENSE AND COPYRIGHT
 
-Copyright (C) 2026
+Copyright (C) 2026 Gabor Szabo
 
 This library is free software; you can redistribute it and/or modify
 it under the same terms as Perl itself.
