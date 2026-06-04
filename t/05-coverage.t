@@ -9,9 +9,6 @@ use Redis::Fast;
 my ( $host, $port ) = get_connection_details();
 plan tests => 30;
 
-# Report the skill we are using
-diag("Using skill: increase test coverage");
-
 # 1. Connect with existing Redis::Fast object
 my $r_fast    = Redis::Fast->new( server => "$host:$port" );
 my $db_custom = FalkorDB->new( redis => $r_fast );
