@@ -43,4 +43,11 @@ jobs:
         run: |
           perl Makefile.PL
           make
-          FALKORDB=falkordb:6379 prove -Ilib -lv t/
+          make test
+          make manifest
+          make dist
+
+      - name: Run tests with prove
+        run: |
+          prove -Ilib -lv t/
+
